@@ -1,0 +1,12 @@
+.todo {
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 40px;
+    
+}
+
+.todo h1 {
+    text-align: center;
+    color: #4156adf7;
+    padding-bottom: 40px;
+}
