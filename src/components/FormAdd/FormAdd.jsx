@@ -11,10 +11,15 @@ const useStyles = makeStyles({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '450px',
+        width: '400px',
         backgroundColor: '#fff',
         boxShadow: '0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 5px 8px 0px rgb(0 0 0 / 14%), 0px 1px 14px 0px rgb(0 0 0 / 12%)',
-        padding: '16px 32px 24px'
+        padding: '30px',
+        borderRadius: '5px'
+    },
+
+    typography: {
+        color: '#205d91'
     },
 
     formControl: {
@@ -49,7 +54,7 @@ function FormAdd(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Box className={classes.modal}>
-                    <Typography variant="h5" align="center" pb={4}>
+                    <Typography variant="h5" align="center" pb={4} className={classes.typography}>
                         ADD TASK
                     </Typography>
 
@@ -61,6 +66,22 @@ function FormAdd(props) {
                                 <TextField value={value} onChange={onChange} size="small"
                                     required
                                     label="Name"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    error={invalid}
+                                    helperText={error?.message}
+                                />
+                            )}
+                        ></Controller>
+
+                        <Controller
+                            name="url"
+                            control={control}
+                            render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
+                                <TextField value={value} onChange={onChange} size="small"
+                                    required
+                                    label="Url"
                                     margin="normal"
                                     variant="outlined"
                                     fullWidth
@@ -94,7 +115,7 @@ function FormAdd(props) {
                                 control={control}
                                 name="date"
                                 render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-                                    <TextField 
+                                    <TextField
                                         size="small"
                                         required
                                         label="Date"
@@ -108,24 +129,6 @@ function FormAdd(props) {
                                             shrink: true,
                                         }}
                                         onChange={onChange}
-                                    />
-                                )}
-                            ></Controller>
-                        </FormControl>
-
-                        <FormControl>
-                            <Controller
-                                name="file"
-                                control={control}
-                                render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-                                    <TextField value={value} onChange={onChange}
-                                        size="small"
-                                        type="file"
-                                        margin="normal"
-                                        variant="standard"
-                                        fullWidth
-                                        error={invalid}
-                                        helperText={error?.message}
                                     />
                                 )}
                             ></Controller>

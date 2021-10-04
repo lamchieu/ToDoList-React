@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Footer/Footer'
 import FormAdd from '../FormAdd/FormAdd'
 import './FormTodolist.css'
 
@@ -29,6 +30,7 @@ function FormTodolist(props) {
                     </div>
                 </li>
             </ul>
+            <Footer />
         </div>
     )
 }

@@ -1,0 +1,46 @@
+.app__footer {
+    padding: 10px 15px;
+    height: 40px;
+    text-align: center;
+    font-size: 15px;
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app__footer::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2),
+        0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.app__footer .footer__count {
+    text-align: left;
+}
+
+.app__footer .footer__filters {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.app__footer .footer__filters .li__filters a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.app__footer .footer__filters .li__filters a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}
+
