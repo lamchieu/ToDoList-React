@@ -360,6 +360,11 @@
   "resolved" "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz"
   "version" "0.2.5"
 
+"@hookform/resolvers@^2.8.1":
+  "integrity" "sha512-U5lgaCkvD+0e5X8iQmCHiF+jOqjTX6OHUA7zPdeIHI6xdAOoi3rH9MKNuwMwv5Hly2LL6XtDgDkS/k+YG9hOew=="
+  "resolved" "https://registry.npmjs.org/@hookform/resolvers/-/resolvers-2.8.1.tgz"
+  "version" "2.8.1"
+
 "@mui/core@5.0.0-alpha.49":
   "integrity" "sha512-bZ7UgH84AuKf/IT0U+knHEelDxLV0lNVFg7rKkkDfXEwUpTtAZEtZPFJjNngapSB/4MuFjaFsttex+0DGC5Z1Q=="
   "resolved" "https://registry.npmjs.org/@mui/core/-/core-5.0.0-alpha.49.tgz"
@@ -871,6 +876,11 @@
   "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
   "version" "4.17.21"
 
+"lodash.clonedeep@^4.5.0":
+  "integrity" "sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8="
+  "resolved" "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz"
+  "version" "4.5.0"
+
 "lodash@^4.17.20":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
@@ -982,7 +992,7 @@
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.2"
 
-"react-hook-form@^7.17.0":
+"react-hook-form@^7.0.0", "react-hook-form@^7.17.0":
   "integrity" "sha512-hA6cbLxycyTRVL585jofNesc1sPtxn2GB1/KCV0P8lnmwzPmqhMxqbuX5TtTdTcBItf3grawfllkg1cv1iDMtQ=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.17.0.tgz"
   "version" "7.17.0"
@@ -1104,6 +1114,11 @@
   "integrity" "sha1-riF2gXXRVZ1IvvNUILL0li8JwzA="
   "resolved" "https://registry.npmjs.org/toposort/-/toposort-2.0.2.tgz"
   "version" "2.0.2"
+
+"uuid@^8.3.2":
+  "integrity" "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
+  "version" "8.3.2"
 
 "vite@^2.6.0":
   "integrity" "sha512-HSIg9U15LOnbD3CUxX364Pdrm7DUjftuBljowGxvkFHgDZU/SKPqApg9t86MX/Qq1VCO7wS+mGJHlfuTF7c0Sg=="

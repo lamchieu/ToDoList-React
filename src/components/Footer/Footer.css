@@ -31,16 +31,16 @@
     left: 0;
 }
 
-.app__footer .footer__filters .li__filters a {
-    color: inherit;
+.li__filters p {
     margin: 3px;
     padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid transparent;
     border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.6s ease;
 }
 
-.app__footer .footer__filters .li__filters a:hover {
-    border-color: rgba(175, 47, 47, 0.1);
+.li__filters p:hover {
+    border: 1px solid #00000038;
 }
+
 

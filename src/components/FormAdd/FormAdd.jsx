@@ -1,9 +1,10 @@
-import { Button, FormControl, Modal, TextField, Typography, Box } from '@mui/material'
-import React, { useState } from 'react'
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Box, Button, Modal, TextField, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import FormTodolist from '../../components/FormTodolist/FormTodolist';
-import './FormAdd.css'
+import * as yup from "yup";
+import './FormAdd.css';
 
 const useStyles = makeStyles({
     modal: {
@@ -24,13 +25,44 @@ const useStyles = makeStyles({
 
     formControl: {
         paddingRight: '54px !important'
+    },
+
+    button: {
+        margin: '10px 0 !important'
     }
 });
 
 function FormAdd(props) {
     const classes = useStyles();
-    //modal
+    //yup
+    const schema = yup.object().shape({
+        name: yup.string().required("*Name is required"),
+        url: yup.string().url().required("*Url is required"),
+        quantity: yup.number().test(
+            'Is positive?', 
+            'The number must be greater than 0', 
+            (value) => value > 0
+        ),
+        date: yup.date().required('*Date is required')
+    })
 
+    const { handleSubmit, control, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            name: '',
+            url: '',
+            quantity: '',
+            date: ''
+        },
+        resolver: yupResolver(schema)
+    });
+
+    //form
+    const onSubmit = (data) => {
+        props.addToDo(data);
+        reset()
+    };
+
+    //modal
     const [open, setOpen] = useState(false)
     const handleOpenModal = () => {
         setOpen(true)
@@ -39,13 +71,9 @@ function FormAdd(props) {
         setOpen(false)
     }
 
-    //form
-    const { handleSubmit, control, reset } = useForm();
-    const onSubmit = data => console.log(data);
-
     return (
-        <div>
-            <Button type="button" color="primary" variant="outlined" size="small" onClick={handleOpenModal}>Add task</Button>
+        <div className="item__add">
+            <Button className={classes.button} type="button" color="primary" variant="outlined" size="small" onClick={handleOpenModal}>Add task</Button>
 
             <Modal
                 open={open}
@@ -64,7 +92,6 @@ function FormAdd(props) {
                             control={control}
                             render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
                                 <TextField value={value} onChange={onChange} size="small"
-                                    required
                                     label="Name"
                                     margin="normal"
                                     variant="outlined"
@@ -80,7 +107,6 @@ function FormAdd(props) {
                             control={control}
                             render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
                                 <TextField value={value} onChange={onChange} size="small"
-                                    required
                                     label="Url"
                                     margin="normal"
                                     variant="outlined"
@@ -91,48 +117,42 @@ function FormAdd(props) {
                             )}
                         ></Controller>
 
-                        <FormControl className={classes.formControl}>
-                            <Controller
-                                name="quantity"
-                                control={control}
-                                render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-                                    <TextField value={value} onChange={onChange} size="small"
-                                        required
-                                        type="number"
-                                        label="Quantity"
-                                        margin="normal"
-                                        variant="outlined"
-                                        fullWidth
-                                        error={invalid}
-                                        helperText={error?.message}
-                                    />
-                                )}
-                            ></Controller>
-                        </FormControl>
+                        <Controller
+                            name="quantity"
+                            control={control}
+                            render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
+                                <TextField value={value} onChange={onChange} size="small"
+                                    type="number"
+                                    label="Quantity"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    error={invalid}
+                                    helperText={error?.message}
+                                />
+                            )}
+                        ></Controller>
 
-                        <FormControl>
-                            <Controller
-                                control={control}
-                                name="date"
-                                render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-                                    <TextField
-                                        size="small"
-                                        required
-                                        label="Date"
-                                        type="date"
-                                        error={invalid}
-                                        helperText={error?.message}
-                                        value={value}
-                                        margin="normal"
-                                        formate="MMM/dd/yyyy"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        onChange={onChange}
-                                    />
-                                )}
-                            ></Controller>
-                        </FormControl>
+                        <Controller
+                            control={control}
+                            name="date"
+                            render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
+                                <TextField
+                                    size="small"
+                                    label="Date"
+                                    type="date"
+                                    error={invalid}
+                                    helperText={error?.message}
+                                    value={value}
+                                    margin="normal"
+                                    fullWidth
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={onChange}
+                                />
+                            )}
+                        ></Controller>
 
                         <div className="submit">
                             <Button variant="contained" color="primary" type="submit">

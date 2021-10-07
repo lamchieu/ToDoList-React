@@ -1,0 +1,8 @@
+.checked {
+    text-decoration: line-through;
+    color: #cdcdcd;
+}
+
+.checked img {
+    filter: opacity(0.5);
+}
