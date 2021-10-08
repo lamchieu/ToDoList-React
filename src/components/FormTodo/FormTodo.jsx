@@ -60,7 +60,7 @@ function FormTodo(props) {
                     <input type="text" className="form__add" placeholder="What are you looking for ?" />
                 </form>
                 <div className="item__title">
-                    <i className="item__fb ion-logo-facebook"></i>
+                    <iframe className="item__fb" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Flamchieu.github.io%2FToDoList-React%2F&layout=button_count&size=small&width=87&height=20&appId" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                     <p className="item__text item__border grid__2">Name</p>
                     <p className="item__text item__border">Quantity</p>
                     <p className="item__text item__border">Date</p>

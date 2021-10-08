@@ -34,7 +34,7 @@
 }
 
 .list__item {
-    transition:  all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .list__item:hover {
@@ -89,7 +89,16 @@
     font-size: 24px;
 }
 
-.item__icon, .item__fb {
+.item__fb {
+    width: 50%;
+    height: 1.5rem;
+    border: none;
+    align-self: center;
+    justify-self: center;
+}
+
+.item__icon,
+.item__fb {
     align-self: center;
     justify-self: center;
 }
@@ -114,7 +123,8 @@
     border-right: 1px groove;
 }
 
-.grid__2, .gridUI__2 {
+.grid__2,
+.gridUI__2 {
     grid-column: 2 / span 1;
 }
 
@@ -122,7 +132,8 @@
     grid-column: 6 / span 1;
 }
 
-.gridUI__2, .gridUI {
+.gridUI__2,
+.gridUI {
     margin: 6px 2px !important;
 }
 
