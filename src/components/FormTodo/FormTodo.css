@@ -68,22 +68,28 @@
     cursor: pointer;
     color: #415a65;
     display: none;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
+}
+
+.item__fb {
+    cursor: pointer;
+    color: #415a65;
+    transition: all 0.3s ease;
 }
 
 .item__view:hover i {
     display: inline-block;
 }
 
-.item__view i:hover {
+.app__todo i:hover {
     color: #3f7790;
 }
 
-.item__view i::before {
+.app__todo i::before {
     font-size: 24px;
 }
 
-.item__icon {
+.item__icon, .item__fb {
     align-self: center;
     justify-self: center;
 }

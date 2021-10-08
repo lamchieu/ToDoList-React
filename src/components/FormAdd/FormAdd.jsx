@@ -35,6 +35,15 @@ const useStyles = makeStyles({
 function FormAdd(props) {
     const classes = useStyles();
     //yup
+
+    const convert = (datetime) => {
+        let date = new Date(datetime),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+    }
+    
+    const min = convert(new Date())
     const schema = yup.object().shape({
         name: yup.string().required("*Name is required"),
         url: yup.string().url().required("*Url is required"),
@@ -43,7 +52,8 @@ function FormAdd(props) {
             'The number must be greater than 0', 
             (value) => value > 0
         ),
-        date: yup.date().required('*Date is required')
+        
+        date: yup.date().required('*Date is required').min(min, `Date should be equal or later than ${min}`)
     })
 
     const { handleSubmit, control, formState: { errors }, reset } = useForm({
@@ -51,7 +61,7 @@ function FormAdd(props) {
             name: '',
             url: '',
             quantity: '',
-            date: ''
+            date: convert(new Date())
         },
         resolver: yupResolver(schema)
     });

@@ -1,14 +1,15 @@
 import { TextField } from '@mui/material'
 import React, { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import './ToDoItem.css'
 
 
 function ToDoItem(props) {
 
+
     const { id, name, quantity, date, url, complete } = props.todo
     const { handleDelete, handleUpdate, handleCheckBox, todo } = props
 
-    //edit
     const [nameValue, setName] = useState(name)
     const [quantityValue, setQuantity] = useState(quantity)
     const [dateValue, setDate] = useState(date)
@@ -24,7 +25,14 @@ function ToDoItem(props) {
         let date = new Date(datetime),
             mnth = ("0" + (date.getMonth() + 1)).slice(-2),
             day = ("0" + date.getDate()).slice(-2);
-        return [mnth, day, date.getFullYear()].join("/");
+        return [day, mnth, date.getFullYear()].join("-");
+    }
+
+    const convertDateForm = (datetime) => {
+        let date = new Date(datetime),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
     }
 
     const changeValueName = (e) => {
@@ -43,9 +51,25 @@ function ToDoItem(props) {
         setQuantity(e.target.value)
     }
 
+    //ERROR
+    const [errors, setErrors] = useState([]);
+    const validate = () => {
+        const errors = [];
+        if (quantityValue < 0) {
+            errors.push("The number must be greater than 0")
+        }
+        return errors
+    }
+
     //EDIT
     const handelEdit = () => {
-        if (nameValue && nameValue !== name || date && dateValue !== date || quantity && quantityValue !== quantity || url && urlValue !== url) {
+        const errors = validate();
+        if (errors.length > 0) {
+            setErrors(errors);
+            return;
+        }
+
+        if (nameValue && nameValue !== name || dateValue && dateValue !== date || quantityValue > 0 && quantityValue !== quantity || urlValue && urlValue !== url) {
             const newTodo = {
                 ...todo,
                 name: nameValue,
@@ -68,7 +92,7 @@ function ToDoItem(props) {
     }
 
     return (
-        <li className={'list__item' && check ? null : 'checked'}>
+        <li className={'list__item' && check ? 'checked' : null}>
             {!openEdit &&
                 <div className="item__view">
                     {!check &&
@@ -104,6 +128,7 @@ function ToDoItem(props) {
                         id="outlined-required"
                         value={nameValue}
                         onChange={changeValueName}
+                        helperText={errors[1]}
                     />
 
                     <TextField
@@ -113,14 +138,17 @@ function ToDoItem(props) {
                         id="outlined-required"
                         value={quantityValue}
                         onChange={changeValueQuantity}
+                        helperText={errors[0]}
+                        error={errors[0]}
                     />
 
                     <TextField
                         className="gridUI"
                         size="small"
                         id="outlined-required"
-                        value={convert(dateValue)}
+                        value={convertDateForm(dateValue)}
                         onChange={changeValueDate}
+                        type="date"
                     />
                     <TextField
                         className="gridUI"
@@ -131,7 +159,7 @@ function ToDoItem(props) {
                     />
 
                     <div className="item__icon grid__5">
-                        <i className="icon__edit ion-md-checkmark" onClick={handelEdit}></i>
+                        <i className="icon__edit ion-md-checkmark" type="submit" onClick={handelEdit}></i>
                     </div>
                 </div>
             }
